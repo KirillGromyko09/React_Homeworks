@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import Card from "./Card.jsx";
+import Definitions from "./Definitions.jsx";
 
 function App() {
 
   return (
-    <Card/>
+    <Definitions/>
   )
 }
 
