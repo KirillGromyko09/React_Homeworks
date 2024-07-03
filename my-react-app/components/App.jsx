@@ -4,7 +4,11 @@ import Card from "./Card.jsx";
 function App() {
 
   return (
-    Card()
+      <div>
+        <Card text = 'Hello,'/>
+        <Card title = 'World'/>
+        <Card text = 'Hello,' title = 'World'/>
+      </div>
   )
 }
 
