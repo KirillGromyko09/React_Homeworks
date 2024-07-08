@@ -12,10 +12,6 @@ class Definitions extends React.Component {
                     </dl>
                     ))}
             </div>
-
-
-)
-}
-}
+)}}
 
 export default Definitions
