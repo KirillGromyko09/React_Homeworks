@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 class Definitions extends React.Component {
     render() {
         const {data} = this.props;
