@@ -4,14 +4,21 @@ class Definitions extends React.Component {
     render() {
         const {data} = this.props;
         return (
-            <div>
+            <dl className='mt-3 ms-5 p-3 border border-primary d-inline-block'>
                 {data.map(item => (
-                    <dl key={item.id}>
+                    <React.Fragment key={item.id}>
                         <dt>{item.dt}</dt>
                         <dd>{item.dd}</dd>
-                    </dl>
-                    ))}
-            </div>
-)}}
+                    </React.Fragment>
+                ))}
+            </dl>
+
+        )
+    }
+}
+
+Definitions.defaultProps = {
+    data: []
+}
 
 export default Definitions

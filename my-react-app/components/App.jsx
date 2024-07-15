@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Card from "./Card.jsx";
+import Card from "../Card.jsx";
 import Definitions from "./Definitions.jsx";
 
 function App() {
