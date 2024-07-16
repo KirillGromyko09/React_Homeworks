@@ -5,5 +5,8 @@
     "eslint-plugin-react": "^7.34.3",
     "globals": "^15.7.0",
     "prettier": "3.3.2"
+  },
+  "dependencies": {
+    "react-dom": "^18.3.1"
   }
 }
