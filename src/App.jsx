@@ -1,10 +1,15 @@
 import { useState } from 'react'
-import Card from "./components/Card.jsx";
+import Alert from "./components/Alert.jsx";
 
 function App() {
 
   return (
-      <Card></Card>
+      <div>
+        <Alert type="warning" text="what is love?" />
+        <Alert type="danger" text="danger danger"/>
+      </div>
+
+
   )
 }
 
