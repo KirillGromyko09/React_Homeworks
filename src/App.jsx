@@ -1,11 +1,5 @@
-import { useState } from 'react'
-import Card from "./components/Card.jsx";
+import { useState } from "react";
 
-function App() {
+function App() {}
 
-  return (
-      <Card></Card>
-  )
-}
-
-export default App
+export default App;
