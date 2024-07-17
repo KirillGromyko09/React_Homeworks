@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import Card from "./components/Card.jsx";
 
 function App() {
 
-  return ()
+  return (
+      <Card></Card>
+  )
 }
 
 export default App
