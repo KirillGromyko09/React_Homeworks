@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import Card from "./components/Card.jsx";
+import Progress from "./components/Progress.jsx";
 
 function App() {
 
   return (
-      <Card></Card>
+      <>
+        <Progress percentage={40} />
+      </>
   )
 }
 
