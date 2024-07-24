@@ -26,10 +26,14 @@ class TodoList extends Component {
                         </Col>
                         <Col xs={6}>
                             <Row>
-                                {this.state.data.map(({title , description}) => {
+                                {this.state.data.map(({title , description} , index) => {
                                     return (
-                                        <Col xs={4}>
-                                            <TodoItem title = {title} body = {description} />
+                                        <Col key={title + '_' + index}
+                                             data-id={title + '_' + index}
+                                             xs={4}
+                                             className='mb-4'
+                                        >
+                                            <TodoItem title={title}  body={description} />
                                         </Col>
                                     )
                                 })}

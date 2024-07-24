@@ -27,11 +27,11 @@ class TodoForm extends Component {
         e.stopPropagation();
         e.preventDefault()
         for (const key in this.state.formData){
-            if (this.state.formData[key].trim === '')
+            if (this.state.formData[key].trim() === '')
                 return alert(`${key} is empty`)
         }
 
-        this.state.onSubmit({...this.state.formData})
+        this.props.onSubmit({...this.state.formData})
     }
 
     render() {
