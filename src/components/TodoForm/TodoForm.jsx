@@ -35,7 +35,7 @@ class TodoForm extends Component {
     }
 
     render() {
-        const {title , description} = this.state;
+        const {title , description} = this.state.formData;
         return (
             <div>
                 <Form onSubmit={this.handleSubmit}>

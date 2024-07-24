@@ -29,7 +29,6 @@ class TodoList extends Component {
                                 {this.state.data.map(({title , description} , index) => {
                                     return (
                                         <Col key={title + '_' + index}
-                                             data-id={title + '_' + index}
                                              xs={4}
                                              className='mb-4'
                                         >
