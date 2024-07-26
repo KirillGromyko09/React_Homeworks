@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styles from "./style.module.scss";
 import PropTypes from "prop-types";
 import cn from "classnames";
-import { hydrateRoot } from "react-dom/client.js";
 
 class Modal extends Component {
   constructor(props) {
