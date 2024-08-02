@@ -1,8 +1,12 @@
 import { useState } from "react";
-
+import Component from "./components/Component.jsx";
 
 function App() {
-  return
+  return (
+    <>
+      <Component />
+    </>
+  );
 }
 
 export default App;
