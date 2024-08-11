@@ -1,29 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostCatalog from "./components/PostCatalog";
 import React, { Component } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      posts: [],
+const App = () => {
+  const [users, setUsers] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const request = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await request.json();
+      const filteredData = data.map(({ name, id }) => {
+        return { name, id };
+      });
+      setUsers(filteredData);
     };
-    this.fetchUsers();
-  }
+    fetchUsers();
+  }, []);
 
-  async fetchUsers() {
-    const request = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await request.json();
-    const filteredData = data.map(({ name, id }) => {
-      return { name, id };
-    });
-
-    this.setState({ users: filteredData });
-  }
-
-  handleClickOnListItem = async ({ id }) => {
+  const handleClickOnListItem = async ({ id }) => {
     const request = await fetch(
       "https://jsonplaceholder.typicode.com/posts?userId=" + id,
     );
@@ -42,32 +38,30 @@ class App extends Component {
       };
     });
 
-    this.setState({ posts: styledPosts });
+    setPosts(styledPosts);
   };
-  render() {
-    return (
-      <main className="users pt-5">
-        <Container>
-          <Row>
-            <Col xs={4}>
-              {this.state.users.length ? (
-                <PostCatalog
-                  data={this.state.users}
-                  itemToShow="name"
-                  handleClick={this.handleClickOnListItem}
-                />
-              ) : (
-                "Loading..."
-              )}
-            </Col>
-            <Col xs={8}>
-              <PostCatalog data={this.state.posts} itemToShow="content" />
-            </Col>
-          </Row>
-        </Container>
-      </main>
-    );
-  }
-}
+  return (
+    <main className="users pt-5">
+      <Container>
+        <Row>
+          <Col xs={4}>
+            {users.length ? (
+              <PostCatalog
+                data={users}
+                itemToShow="name"
+                handleClick={handleClickOnListItem}
+              />
+            ) : (
+              "Loading..."
+            )}
+          </Col>
+          <Col xs={8}>
+            <PostCatalog data={posts} itemToShow="content" />
+          </Col>
+        </Row>
+      </Container>
+    </main>
+  );
+};
 
 export default App;
