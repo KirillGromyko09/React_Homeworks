@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import TodoForm from "../TodoForm";
 import TodoItem from "../TodoItem";
+import { v4 as uuidv4 } from "uuid";
 
 const TodoList = () => {
   const [data, setData] = useState([]);
 
   const handleSubmit = (todoItem) => {
-    setData([...data, todoItem]);
+    const newTodo = { ...todoItem, id: uuidv4() };
+    setData([...data, newTodo]);
   };
 
   const handleRemoveTodo = (id) => {
@@ -27,17 +29,12 @@ const TodoList = () => {
           </Col>
           <Col xs={6}>
             <Row>
-              {data.map(({ title, description }, index) => (
-                <Col
-                  key={title + "_" + index}
-                  data-id={title + "_" + index}
-                  xs={4}
-                  className="mb-4"
-                >
+              {data.map(({ id, title, description }) => (
+                <Col key={id} xs={4} className="mb-4">
                   <TodoItem
                     title={title}
                     body={description}
-                    handleRemoveTodo={() => handleRemoveTodo()}
+                    handleRemoveTodo={() => handleRemoveTodo(id)}
                   />
                 </Col>
               ))}
