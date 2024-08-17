@@ -42,7 +42,7 @@ export class StorageService {
 
   async #rewriteStorageData(data) {
     try {
-      localStorage.setItem(this.#key, JSON.stringify(data));
+      this.#storage.setItem(this.#key, JSON.stringify(data));
       return true;
     } catch (error) {
       return false;
