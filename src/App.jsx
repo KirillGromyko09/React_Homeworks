@@ -5,6 +5,10 @@ import { cloneDeep } from "lodash";
 import TodoItem from "./components/todoItem";
 import React from "react";
 import storageService from "./utils/StorageService.js";
+import HomePage from "./pages/home/HomePage.jsx";
+import AllTodosPage from "./pages/allTodos/AllTodosPage.jsx";
+// import TodoPage from "./pages/todo/TodoPage.jsx";
+import { Link, Route, Router, Routes } from "react-router-dom";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -41,26 +45,47 @@ function App() {
   }, []);
 
   return (
-    <Container maxWidth="md">
-      <Grid container spacing={2}>
-        <Grid item xs={5}>
-          <TodoForm onSubmit={saveTodo} />
+    <>
+      <Container maxWidth="md">
+        <Grid container spacing={2}>
+          <Grid item xs={5}>
+            <TodoForm onSubmit={saveTodo} />
+          </Grid>
+          <Grid py={5} container xs={7} item spacing={2}>
+            {!!todos.length &&
+              todos.map((item) => (
+                <Grid key={item.id} item xs={4}>
+                  <TodoItem
+                    title={item.title}
+                    body={item.description}
+                    id={item.id}
+                    onRemove={handleRemove}
+                  />
+                </Grid>
+              ))}
+          </Grid>
         </Grid>
-        <Grid py={5} container xs={7} item spacing={2}>
-          {!!todos.length &&
-            todos.map((item) => (
-              <Grid key={item.id} item xs={4}>
-                <TodoItem
-                  title={item.title}
-                  body={item.description}
-                  id={item.id}
-                  onRemove={handleRemove}
-                />
-              </Grid>
-            ))}
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/allTodos">All Todos</Link>
+          </li>
+          <li>
+            <Link to="/todos">Todos</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/allTodos" element={<AllTodosPage />} />
+        {/*<Route path="/todos" element={<TodoPage />} />*/}
+      </Routes>
+    </>
   );
 }
 
