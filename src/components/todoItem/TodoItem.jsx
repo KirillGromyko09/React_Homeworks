@@ -28,6 +28,8 @@ const TodoItem = ({ title, body, id, onRemove }) => {
 TodoItem.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onRemove: PropTypes.func,
 };
 
 export default TodoItem;
