@@ -5,9 +5,9 @@ import { cloneDeep } from "lodash";
 import TodoItem from "./components/todoItem";
 import React from "react";
 import storageService from "./utils/StorageService.js";
-import HomePage from "./pages/home/HomePage.jsx";
-import AllTodosPage from "./pages/allTodos/AllTodosPage.jsx";
-// import TodoPage from "./pages/todo/TodoPage.jsx";
+import TodoPage from "./pages/todo";
+import HomePage from "./pages/home";
+import AllTodosPage from "./pages/allTodos";
 import { Link, Route, Router, Routes } from "react-router-dom";
 
 function App() {
@@ -83,7 +83,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/allTodos" element={<AllTodosPage />} />
-        {/*<Route path="/todos" element={<TodoPage />} />*/}
+        <Route path="/todos" element={<TodoPage />} />
       </Routes>
     </>
   );
