@@ -1,6 +1,7 @@
 const routeNames = Object.freeze({
+  notFound: "*",
   home: "/",
-  posts: "posts",
-  singlePost: "posts/:postId",
+  allTodos: "/todos",
+  singleTodo: "/todos/:todoId",
 });
 export default routeNames;
