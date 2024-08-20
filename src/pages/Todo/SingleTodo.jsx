@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import storageService, {
-  getData,
-  saveItem,
-} from "./../../utils/StorageService.js";
+import storageService from "./../../utils/StorageService.js";
 import { Link, useParams } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import TodoForm from "../../components/form/TodoForm/index.js";

@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const TodoItem = ({ title, body, id, onRemove }) => {
   return (
@@ -17,8 +18,21 @@ const TodoItem = ({ title, body, id, onRemove }) => {
         </Typography>
         <Typography variant="body2">{body}</Typography>
         <CardActions>
-          <Button size="small" onClick={() => onRemove(title, body, id)}>
+          <Button
+            size="small"
+            variant="contained"
+            color={error}
+            onClick={() => onRemove(title, body, id)}
+          >
             Remove
+          </Button>
+          <Button
+            variant="contained"
+            component={Link}
+            to="/todos/${todoId}"
+            sx={{ mx: 1 }}
+          >
+            Переглянути Todo
           </Button>
         </CardActions>
       </CardContent>

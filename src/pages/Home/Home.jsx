@@ -48,7 +48,7 @@ const Home = () => {
         <Grid py={5} container xs={7} item spacing={2}>
           {!!todos.length &&
             todos.map((item) => (
-              <Grid key={item.id} item xs={4}>
+              <Grid key={item.id} item xs={12}>
                 <TodoItem
                   title={item.title}
                   body={item.description}

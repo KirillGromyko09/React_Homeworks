@@ -8,14 +8,6 @@ import TodoItem from "../../components/todoItem/index.js";
 const AllTodos = () => {
   const [todos, setTodos] = useState([]);
 
-  const handleRemove = async ({ id: itemId }) => {
-    const { id } = await storageService.deleteItem(itemId);
-    const updatedData = todos.filter((item) => {
-      return item.id !== id;
-    });
-    setTodos(updatedData);
-  };
-
   useEffect(() => {
     const getData = async () => {
       try {
@@ -27,6 +19,13 @@ const AllTodos = () => {
     };
     getData();
   }, []);
+  const handleRemove = async ({ id: itemId }) => {
+    const { id } = await storageService.deleteItem(itemId);
+    const updatedData = todo.filter((item) => {
+      return item.id !== id;
+    });
+    setTodo(updatedData);
+  };
   return (
     <Container>
       <Grid py={5} container xs={7} item spacing={2}>
