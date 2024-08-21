@@ -26,6 +26,19 @@ const Home = () => {
     });
     setTodos(updatedData);
   };
+  const handleEditTodo = async (id, updatedTodo) => {
+    try {
+      const todosCopy = cloneDeep(todos);
+      const index = todosCopy.findIndex((item) => item.id === id);
+      if (index !== -1) {
+        todosCopy[index] = { ...todosCopy[index], ...updatedTodo };
+        await storageService.saveItem(todosCopy);
+        setTodos(todosCopy);
+      }
+    } catch (error) {
+      console.error("Error updating todo:", error);
+    }
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -50,10 +63,11 @@ const Home = () => {
             todos.map((item) => (
               <Grid key={item.id} item xs={12}>
                 <TodoItem
-                  title={item.title}
-                  body={item.description}
+                  title={item.title || "No Title"}
+                  body={item.description || "No Description"}
                   id={item.id}
                   onRemove={handleRemove}
+                  onEdit={handleEditTodo}
                 />
               </Grid>
             ))}

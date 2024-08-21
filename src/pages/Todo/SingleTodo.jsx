@@ -1,31 +1,68 @@
 import React, { useEffect, useState } from "react";
-import storageService from "./../../utils/StorageService.js";
 import { Link, useParams } from "react-router-dom";
 import { Box, Button } from "@mui/material";
 import TodoForm from "../../components/form/TodoForm/index.js";
+import storageService, { StorageService } from "../../utils/StorageService.js";
 
-const SingleTodo = () => {
+const SingleTodo = () =>  {
   const { id } = useParams();
-  const [todo, setTodo] = useState([]);
+  const [todo, setTodo] = useState(null);
+
   useEffect(() => {
-    const todos = getData();
-    const currentTodo = todos.find((item) => item.id === id);
-    setTodo(currentTodo);
+    const fetchData = async () => {
+      try {
+        const todos = await storageService.getData();
+
+        if (!Array.isArray(todos)) {
+          console.error("todos is not an array:", todos);
+          return;
+        }
+
+        const currentTodo = todos.find((item) => item.id === id);
+        setTodo(currentTodo);
+      } catch (error) {
+        console.error("Error fetching todo:", error);
+      }
+    };
+
+    fetchData();
   }, [id]);
-  const handleEditTodo = (updatedTodo) => {
-    const todos = getData();
-    const newTodos = todos.map((item) => (item.id === id ? updatedTodo : item));
-    saveItem(newTodos);
-    saveItem(updatedTodo);
-    alert("Todo item updated successfully");
+
+  const handleEditTodo = async (updatedTodo) => {
+    try {
+      const todos = await storageService.getData();
+      const newTodos = todos.map((item) => (item.id === id ? updatedTodo : item));
+
+      await storageService.saveItem(newTodos);
+      alert("Todo item updated successfully");
+    } catch (error) {
+      console.error("Error updating todo:", error);
+    }
   };
-  const handleRemove = async ({ id: itemId }) => {
-    const { id } = await storageService.deleteItem(itemId);
-    const updatedData = todo.filter((item) => {
-      return item.id !== id;
-    });
-    setTodo(updatedData);
+
+  const handleRemove = async () => {
+    try {
+      await storageService.deleteItem(id);
+      const todos = await storageService.getData();
+      const updatedData = todos.filter((item) => item.id !== id);
+      setTodo(null);
+      alert("Todo item deleted successfully");
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
   };
+
+  if (!todo) {
+    return (
+      <Box p={2} m={2} bgcolor="#f9f9f9" borderRadius={2}>
+        <p>Todo item not found or has been deleted.</p>
+        <Button variant="contained" component={Link} to="/">
+          Return to Home Page
+        </Button>
+      </Box>
+    );
+  }
+
   return (
     <Box p={2} m={2} bgcolor="#f9f9f9" borderRadius={2}>
       <h1>Todo Item</h1>

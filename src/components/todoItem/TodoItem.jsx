@@ -9,7 +9,7 @@ import {
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const TodoItem = ({ title, body, id, onRemove }) => {
+const TodoItem = ({ title, body, id, onRemove , onEdit }) => {
   return (
     <Card>
       <CardContent>
@@ -21,7 +21,7 @@ const TodoItem = ({ title, body, id, onRemove }) => {
           <Button
             size="small"
             variant="contained"
-            color={error}
+            color='error'
             onClick={() => onRemove(title, body, id)}
           >
             Remove
@@ -29,10 +29,17 @@ const TodoItem = ({ title, body, id, onRemove }) => {
           <Button
             variant="contained"
             component={Link}
-            to="/todos/${todoId}"
+            to={`/todos/${id}`}
             sx={{ mx: 1 }}
           >
             Переглянути Todo
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ mx: 1 }}
+            onClick={() => onEdit(title , body, id)}
+          >
+            Edit Todo
           </Button>
         </CardActions>
       </CardContent>
@@ -42,8 +49,9 @@ const TodoItem = ({ title, body, id, onRemove }) => {
 TodoItem.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   onRemove: PropTypes.func,
+  onEdit: PropTypes.func
 };
 
 export default TodoItem;

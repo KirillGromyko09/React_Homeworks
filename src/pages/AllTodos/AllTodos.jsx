@@ -21,17 +21,17 @@ const AllTodos = () => {
   }, []);
   const handleRemove = async ({ id: itemId }) => {
     const { id } = await storageService.deleteItem(itemId);
-    const updatedData = todo.filter((item) => {
+    const updatedData = todos.filter((item) => {
       return item.id !== id;
     });
-    setTodo(updatedData);
+    setTodos(updatedData);
   };
   return (
     <Container>
       <Grid py={5} container xs={7} item spacing={2}>
         {!!todos.length &&
           todos.map((item) => (
-            <Grid key={item.id} item xs={4}>
+            <Grid key={item.id} item xs={6}>
               <TodoItem
                 title={item.title}
                 body={item.description}
