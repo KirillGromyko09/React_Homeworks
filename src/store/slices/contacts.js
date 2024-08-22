@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const contact = createSlice({
   name: "contact",
-  initialState: {},
+  initialState: {
+    contact: [],
+  },
   reducers: {
     addContact: (state, action) => {
-      state.push({ ...action.payload, id: Date.now() });
+      state.push({ ...action.payload, id: uuidv4() });
     },
     deleteContact: (state, action) => {
       return state.filter((contact) => contact.id !== action.payload);
