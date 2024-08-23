@@ -9,12 +9,13 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ContactItem = ({ contact }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteContact());
+    dispatch(deleteContact(contact.id));
   };
   return (
     <Card>
@@ -34,6 +35,10 @@ const ContactItem = ({ contact }) => {
   );
 };
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired,
+  contact: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    phoneNumber: PropTypes.string.isRequired,
+  }).isRequired,
 };
 export default ContactItem;

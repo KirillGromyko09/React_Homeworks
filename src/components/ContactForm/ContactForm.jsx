@@ -10,6 +10,9 @@ import {
   InputLabel,
   TextField,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../store/slices/contacts.js";
+
 const validationSchema = Yup.object({
   name: Yup.string()
     .min(2, "Must be at least 2 characters")
@@ -22,6 +25,7 @@ const validationSchema = Yup.object({
 });
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -29,7 +33,7 @@ const ContactForm = () => {
     },
     validationSchema,
     onSubmit: (values, { resetForm }) => {
-      onsubmit(values);
+      dispatch(addContact(values));
       resetForm();
     },
   });
@@ -61,8 +65,15 @@ const ContactForm = () => {
             <FormHelperText>{formik.errors.phoneNumber}</FormHelperText>
           )}
         </FormControl>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{ marginTop: "10px" }}
+        >
+          Submit
+        </Button>
       </form>
-      <Button type="submit">Submit</Button>
     </Container>
   );
 };

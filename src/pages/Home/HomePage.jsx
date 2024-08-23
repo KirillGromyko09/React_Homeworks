@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addContact } from "../../store/slices/contacts.js";
 import { Container, Grid } from "@mui/material";
 import ContactForm from "../../components/ContactForm";
@@ -7,6 +7,7 @@ import ContactList from "../../components/ContactList";
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contacts);
 
   const handleAddContact = (values) => {
     dispatch(addContact(values));
@@ -22,7 +23,7 @@ const HomePage = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <ContactList />
+          <ContactList contacts={contacts} />
         </Grid>
       </Grid>
     </Container>

@@ -3,9 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const contact = createSlice({
   name: "contact",
-  initialState: {
-    contact: [],
-  },
+  initialState: [],
   reducers: {
     addContact: (state, action) => {
       state.push({ ...action.payload, id: uuidv4() });
@@ -14,9 +12,10 @@ const contact = createSlice({
       return state.filter((contact) => contact.id !== action.payload);
     },
     updateContact: (state, action) => {
-      const index = state.findIndex((contact) => contact.id === action.payload);
+      const { id, ...updates } = action.payload;
+      const index = state.findIndex((contact) => contact.id === id);
       if (index !== -1) {
-        state[index] = action.payload;
+        state[index] = { ...state[index], ...updates };
       }
     },
   },
