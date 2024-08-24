@@ -24,10 +24,19 @@ const ContactItem = ({ contact }) => {
         <Typography variant="h5">{contact.phoneNumber}</Typography>
       </CardContent>
       <CardActions>
-        <Button type="delete" color="error" onClick={handleDelete}>
+        <Button
+          type="delete"
+          variant="contained"
+          color="error"
+          onClick={handleDelete}
+        >
           Delete
         </Button>
-        <Button component={Link} to={`/contactDetails/${contact.id}`}>
+        <Button
+          variant="contained"
+          component={Link}
+          to={`/contactDetails/${contact.id}`}
+        >
           More Info
         </Button>
       </CardActions>

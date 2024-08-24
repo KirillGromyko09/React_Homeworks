@@ -92,7 +92,7 @@ const ContactDetailsPage = () => {
             <Button type="submit" variant="contained" color="primary">
               Save
             </Button>
-            <Button component={Link} to="/" variant="outlined">
+            <Button component={Link} to="/" color="error" variant="contained">
               Cancel
             </Button>
           </CardActions>

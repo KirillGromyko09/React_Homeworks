@@ -42,7 +42,9 @@ const ContactForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <h2>Contacts</h2>
         <FormControl>
-          <InputLabel htmlFor="name">Name</InputLabel>
+          <InputLabel margin="normal" htmlFor="name">
+            Name
+          </InputLabel>
           <Input
             id="name"
             type="text"
@@ -54,6 +56,8 @@ const ContactForm = () => {
             <FormHelperText>{formik.errors.name}</FormHelperText>
           )}
           <TextField
+            label="Phone number"
+            margin="normal"
             id="phoneNumber"
             type="text"
             multiline
@@ -69,7 +73,7 @@ const ContactForm = () => {
           type="submit"
           variant="contained"
           color="primary"
-          style={{ marginTop: "10px" }}
+          style={({ marginTop: "10px" }, { display: "block" })}
         >
           Submit
         </Button>
